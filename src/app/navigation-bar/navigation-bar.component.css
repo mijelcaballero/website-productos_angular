@@ -1,0 +1,25 @@
+.custom-navbar {
+  background-color: #1f2833;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Reducido el sombreado para menos impacto visual */
+  padding: 0.25rem 0.75rem; /* Reducido el padding para disminuir aún más la altura */
+  margin-bottom: 0.5rem; /* Reducido el margen inferior */
+}
+
+.custom-navbar .navbar-brand {
+  font-weight: bold;
+  color: #66fcf1; /* Color destacado para el logo */
+  font-size: 1.125rem; /* Reducido el tamaño del texto del logo */
+}
+
+.custom-navbar .nav-link {
+  color: #c5c6c7; /* Color más suave */
+  margin-right: 10px; /* Reducido el margen a la derecha */
+  font-size: 0.875rem; /* Tamaño del texto de los enlaces ajustado */
+  padding: 4px 8px; /* Reducido el padding para una apariencia más compacta */
+}
+
+.custom-navbar .nav-link:hover {
+  color: #45a29e; /* Cambio de color sutil al pasar el ratón */
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo ligero al hacer hover */
+  border-radius: 3px; /* Bordes redondeados más pequeños */
+}

@@ -1,0 +1,46 @@
+body {
+  font-family: 'Roboto', sans-serif; /* Cambia la fuente a algo moderno y legible */
+  color: #333; /* Color de texto principal */
+  background-color: #d6d7d9; /* Fondo suave */
+  line-height: 1.6; /* Mejora la legibilidad */
+  margin-top: 80px;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #0b0c10; /* Títulos en un tono más oscuro */
+}
+
+p {
+  color: #60f487; /* Texto en color suave */
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #45a29e;
+  border-color: #45a29e;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #66fcf1;
+  border-color: #66fcf1;
+}
+
+/* Estilo para los carouseles */
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la legibilidad del texto */
+  color: #f8f9fa; /* Color del texto dentro del carrusel */
+  padding: 15px;
+  border-radius: 5px; /* Bordes redondeados para un toque moderno */
+  text-align: center; /* Centra el texto */
+}
+
+.carousel-caption h5, .carousel-caption p {
+  margin: 0; /* Elimina márgenes innecesarios */
+  font-size: 1.2rem; /* Ajusta el tamaño de fuente */
+}

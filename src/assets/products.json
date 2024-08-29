@@ -1,0 +1,53 @@
+[
+    {
+      "id": 1,
+      "name": "IPHONE 15 PRO MAX TITANIO NATURAL",
+      "image": "/assets/images/producto1_celular.jpg",
+      "price": 1940.98
+    },
+    {
+      "id": 2,
+      "name": "SMARTPHONE MINI ANDROID 5.1",
+      "image": "/assets/images/producto2_celular_amazon.jpg",
+      "price": 189.99
+    },
+    {
+        "id": 3,
+        "name": "INFINIX NOTE 40 PRO 8GB + 8GB (VIRTUAL) /256GB VERDE",
+        "image": "/assets/images/producto3_celular_infinix.jpg",
+        "price": 305.99
+    },
+    {
+        "id": 4,
+        "name": "LAPTOP LENOVO CORE I5 11VA GEN 8GB - 256GB",
+        "image": "/assets/images/producto4_laptop_lenovo.jpg",
+        "price": 550.00
+    },
+    {
+        "id": 5,
+        "name": "LAPTOP GAMER LENOVO LEGION 5 PRO/RYZEN 7",
+        "image": "/assets/images/producto5_laptop_lenovo_gamer.jpg",
+        "price": 1585.36
+    },
+    {
+        "id": 6,
+        "name": "LAPTOP HP PAVILION GAMING 15 EC1029LA",
+        "image": "/assets/images/producto6_laptop_hp_gamer.jpg",
+        "price": 1195.00
+    },
+    {
+        "id": 7,
+        "name": "CONSOLA PS5 CON LECTOR",
+        "image": "/assets/images/producto7_consola_ps5.jpg",
+        "price": 1190.00
+    },
+    {
+        "id": 8,
+        "name": "Microsoft Xbox One S 1TB All-Digital Gaming",
+        "image": "/assets/images/producto8_consola_xbbox.jpg",
+        "price": 753.00
+    } 
+
+
+  ]
+  

@@ -1,0 +1,99 @@
+<div class="container">
+    <h1 class="my-4">Bienvenido a EQ-TEC</h1>
+    
+    <!-- Carrusel de Ofertas -->
+<div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <!-- Oferta 1 -->
+    <div class="carousel-item active">
+      <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+        <img src="/assets/images/oferta1.jpg" class="d-block" style="object-fit: cover; height: 100%; width: auto;" alt="Oferta 1">
+      </div>
+      <div class="carousel-caption">
+        <h3>Oferta Especial</h3>
+        <p>¡Aprovecha nuestras ofertas exclusivas!</p>
+      </div>
+    </div>
+    <!-- Oferta 2 -->
+    <div class="carousel-item">
+      <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+        <img src="/assets/images/oferta2.jpg" class="d-block" style="object-fit: cover; height: 100%; width: auto;" alt="Oferta 2">
+      </div>
+      <div class="carousel-caption">
+        <h3>Oferta Unica</h3>
+        <p>¡Los mejores precios del país!</p>
+      </div>
+    </div>
+    <!-- Oferta 3 -->
+    <div class="carousel-item">
+      <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+        <img src="/assets/images/oferta3.jpg" class="d-block" style="object-fit: cover; height: 100%; width: auto;" alt="Oferta 3">
+      </div>
+      <div class="carousel-caption">
+        <h3>SIN ENTRADA Y SIN GARANTE</h3>
+        <p>¡Llevate lo que quieras solo con tu cédula!</p>
+      </div>
+    </div>
+    <!-- Oferta 4 -->
+    <div class="carousel-item">
+      <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+        <img src="/assets/images/oferta4.jpg" class="d-block" style="object-fit: cover; height: 100%; width: auto;" alt="Oferta 4">
+      </div>
+      <div class="carousel-caption">
+        <h3>Paga al contado!!</h3>
+        <p>¡Difiere tus compras a 12 o 24 meses sin intereses!</p>
+      </div>
+    </div>
+  </div>
+      <!-- Controles del carrusel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <!-- Indicadores del carrusel -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+    </div>
+  
+    <!-- Carrusel de Productos -->
+    <h2 class="my-4">Productos Destacados</h2>
+    <div *ngIf="loading">Cargando productos...</div>
+    <div id="productCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let product of products.slice(0, 6); let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+          <div class="d-flex justify-content-center align-items-center" style="height: 400px;">
+            <img [src]="product.image" class="d-block" style="object-fit: cover; height: 100%; width: auto;" [alt]="product.name">
+          </div>
+          <div class="carousel-caption">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.price | currency }}</p>
+            <a [routerLink]="['/productos', product.id]" class="btn btn-primary">Ver Producto</a>
+          </div>
+        </div>
+      </div>
+      <!-- Controles del carrusel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <!-- Indicadores del carrusel -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+    </div>
+  </div>

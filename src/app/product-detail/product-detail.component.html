@@ -1,0 +1,10 @@
+<div *ngIf="loading">Cargando detalles del producto...</div>
+<div *ngIf="!loading && product">
+    <h1>{{ product?.name }}</h1>
+    <img [src]="product?.image" alt="{{ product?.name }}" class="img-fluid mb-3" />
+    <p>Precio: {{ product?.price | currency }}</p>    
+  <button class="btn btn-primary">Comprar</button>
+</div>
+<div *ngIf="!loading && !product">
+  <p>Producto no encontrado</p>
+</div>
