@@ -1,18 +1,37 @@
 <div class="container">
-    <h2 class="my-4">Nuestros Productos</h2>
-    <div *ngIf="loading">Cargando productos...</div>
-    <div *ngIf="!loading && products.length === 0">No hay productos disponibles</div>
-    <div class="row">
-      <div class="col-md-4" *ngFor="let product of products">
-        <div class="card h-100">
-          <img [src]="product.image" class="card-img-top" [alt]="product.name" style="height: 200px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">Precio: {{ product.price | currency }}</p>
-            <a [routerLink]="['/productos', product.id]" class="btn btn-primary">Ver Detalles</a>
-          </div>
+  <!-- Productos Section -->
+  <h2 class="my-4">Nuestros Productos</h2>
+  <div *ngIf="loading">Cargando productos...</div>
+  <div *ngIf="!loading && products.length === 0">No hay productos disponibles</div>
+  <div *ngIf="!loading && products.length > 0" class="row">
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card h-100">
+        <img [src]="product.image" class="card-img-top" [alt]="product.name" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">Precio: {{ product.price | currency }}</p>
+          <a [routerLink]="['/productos', product.id]" class="btn btn-primary">Ver Detalles</a>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- Servicios Section -->
+  <h2 class="my-4">Nuestros Servicios</h2>
+  <div *ngIf="loading">Cargando servicios...</div>
+  <div *ngIf="!loading && services.length === 0">No hay servicios disponibles</div>
+  <div *ngIf="!loading && services.length > 0" class="row">
+    <div class="col-md-4" *ngFor="let service of services">
+      <div class="card h-100">
+        <img [src]="service.image" class="card-img-top" [alt]="service.name" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ service.name }}</h5>
+          <p class="card-text">{{ service.description }}</p>
+          <p class="card-text">Precio: {{ service.price | currency }}</p>
+          <a [routerLink]="['/servicios', service.id]" class="btn btn-primary">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

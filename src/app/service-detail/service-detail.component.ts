@@ -14,14 +14,14 @@ interface Item {
 }
 
 @Component({
-  selector: 'app-product-detail',
+  selector: 'app-service-detail',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  templateUrl: './service-detail.component.html',
+  styleUrls: ['./service-detail.component.css']
 })
 
-export class ProductDetailComponent implements OnInit {
+export class ServiceDetailComponent implements OnInit {
   item: Item | null = null;
   loading = true;
 
@@ -33,10 +33,10 @@ export class ProductDetailComponent implements OnInit {
       this.http.get<{ products: Item[], services: Item[] }>('/assets/products.json').subscribe({
         next: (data) => {
           // Busca el producto o servicio por ID
-          const foundProduct = data.products.find(item => item.id === parseInt(id));
+         
           const foundService = data.services.find(item => item.id === parseInt(id));
           // Asigna el producto o servicio encontrado a la variable `item`
-          this.item = foundProduct || foundService || null;
+          this.item = foundService || null;
           this.loading = false;
         },
         error: (error) => {

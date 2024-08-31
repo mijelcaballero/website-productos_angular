@@ -1,4 +1,77 @@
+/* Espaciado y bordes */
 .card {
-    margin-bottom: 1.5rem;
-  }
+  margin-bottom: 1.5rem;
+  border-radius: 10px; /* Bordes redondeados */
+  overflow: hidden; /* Asegura que los bordes redondeados también afecten a las imágenes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.2s ease-in-out; /* Transición suave en hover */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+}
+
+/* Estilizar los botones */
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50px; /* Bordes redondeados en los botones */
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Cambio de color al hacer hover */
+}
+
+/* Imagenes */
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover; /* Asegura que las imágenes mantengan su proporción dentro del espacio */
+  border-bottom: 1px solid #ddd; /* Añadir un borde inferior a las imágenes para separar del texto */
+}
+
+/* Tipografía y texto */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Contenedores generales */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espacio entre las tarjetas */
+  justify-content: space-around; /* Alinea las tarjetas de manera uniforme */
+}
+
+/* Efectos */
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
   

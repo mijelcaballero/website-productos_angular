@@ -1,0 +1,32 @@
+<div class="container">
+    <p> </p>
+    <h2 class="my-4">Formulario de Suscripción</h2>
+    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre:</label>
+        <input id="name" formControlName="name" class="form-control" type="text" />
+        <div *ngIf="subscriptionForm.get('name')?.invalid && (subscriptionForm.get('name')?.touched || subscriptionForm.get('name')?.dirty)" class="invalid-feedback">
+          Nombre es requerido y debe tener al menos 2 caracteres.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input id="email" formControlName="email" class="form-control" type="email" />
+        <div *ngIf="subscriptionForm.get('email')?.invalid && (subscriptionForm.get('email')?.touched || subscriptionForm.get('email')?.dirty)" class="invalid-feedback">
+          Correo electrónico es requerido y debe ser válido.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="message" class="form-label">Mensaje:</label>
+        <textarea id="message" formControlName="message" class="form-control" rows="4"></textarea>
+        <div *ngIf="subscriptionForm.get('message')?.invalid && (subscriptionForm.get('message')?.touched || subscriptionForm.get('message')?.dirty)" class="invalid-feedback">
+          Mensaje es requerido y debe tener al menos 10 caracteres.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="subscriptionForm.invalid">Enviar</button>
+    </form>
+  </div>
+  

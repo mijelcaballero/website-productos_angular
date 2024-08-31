@@ -1,0 +1,36 @@
+/* Asegura que el contenedor tenga suficiente margen superior para evitar el solapamiento con la barra de navegación */
+.container {
+    margin-top: 80px; /* Ajusta este valor según la altura de tu barra de navegación */
+  }
+  
+  /* Opcional: estilos adicionales para el formulario */
+  form {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  
+  /* Opcional: estilos para el título del formulario */
+  h2 {
+    margin-bottom: 20px; /* Espacio debajo del título */
+  }
+  
+  /* Opcional: estilos para los campos de formulario */
+  input.form-control, textarea.form-control {
+    margin-bottom: 15px; /* Espacio debajo de los campos del formulario */
+  }
+  
+  /* Opcional: estilos para el botón de enviar */
+  button.btn-primary {
+    margin-top: 10px; /* Espacio superior del botón */
+  }
+  
+  
+button:disabled {
+    background-color: #ccc;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+}
+  
+  
