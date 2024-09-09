@@ -1,14 +1,11 @@
-<div *ngIf="loading">Cargando detalles...</div>
-
-<div *ngIf="!loading && item" class="product-detail-container">
-  <h1 class="product-title">{{ item?.name }}</h1>
-  <img [src]="item?.image" alt="{{ item?.name }}" class="product-image" />
-  <p class="product-description">{{ item?.description }}</p>
-  <p class="product-price">Precio: {{ item?.price | currency }}</p>    
-
-  <button *ngIf="item.category === 'product'" class="btn">Comprar</button>
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="item && !loading">
+  <h2>{{item.name}}</h2>
+  <img [src]="item.image" alt="{{item.name}}" />
+  <p>{{item.description}}</p>
+  <p>Price: {{item.price | currency}}</p>
+  <button (click)="addToCart(item)">Buy</button>
 </div>
-
-<div *ngIf="!loading && !item">
-  <p>Producto o servicio no encontrado</p>
+<div *ngIf="!item && !loading">
+  <p>Product not found</p>
 </div>

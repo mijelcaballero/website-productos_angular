@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { FirestoreService } from '../services/firestore.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Item {
-  id: number;
+  id: string;
   name: string;
   image: string;
   description: string;
@@ -25,18 +27,14 @@ export class ProductDetailComponent implements OnInit {
   item: Item | null = null;
   loading = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
-
+  constructor(private route: ActivatedRoute, private firestoreService: FirestoreService, private cartService: CartService, private snackBar: MatSnackBar) {}
+  
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.http.get<{ products: Item[], services: Item[] }>('/assets/products.json').subscribe({
+      this.firestoreService.getItem('productos', id).subscribe({
         next: (data) => {
-          // Busca el producto o servicio por ID
-          const foundProduct = data.products.find(item => item.id === parseInt(id));
-          const foundService = data.services.find(item => item.id === parseInt(id));
-          // Asigna el producto o servicio encontrado a la variable `item`
-          this.item = foundProduct || foundService || null;
+          this.item = data || null;
           this.loading = false;
         },
         error: (error) => {
@@ -48,5 +46,13 @@ export class ProductDetailComponent implements OnInit {
       console.error('ID no encontrado');
       this.loading = false;
     }
+  }
+
+  // Método addToCart con notificación
+  addToCart(item: Item) {
+    this.cartService.addToCart(item);
+    this.snackBar.open(`${item.name} ha sido agregado al carrito!`, 'Cerrar', {
+      duration: 3000, // Tiempo que la notificación permanecerá visible (en milisegundos)
+    });
   }
 }

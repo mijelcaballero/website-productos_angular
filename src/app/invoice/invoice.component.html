@@ -1,0 +1,12 @@
+<div class="invoice-container">
+    <h2>Invoice Preview</h2>
+    <div *ngFor="let item of cartItems" class="invoice-item">
+      <p>{{item.name}} - {{item.price | currency}}</p>
+    </div>
+    <div class="invoice-summary">
+      <p>Total: {{total | currency}}</p>
+      <p>IVA (15%): {{iva | currency}}</p>
+      <p>Final Amount: {{finalAmount | currency}}</p>
+    </div>
+</div>
+  

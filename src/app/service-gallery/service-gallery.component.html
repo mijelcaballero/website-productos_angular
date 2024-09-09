@@ -1,0 +1,33 @@
+<div class="container">
+    <!-- Servicios Section -->
+    <h2 class="my-4">Nuestros Servicios</h2>
+  
+    <div *ngIf="loading">Cargando servicios...</div>
+  
+    <div *ngIf="!loading && (services$ | async) as services">
+      <div *ngIf="services.length === 0">No hay servicios disponibles</div>
+      <div *ngIf="services.length > 0" class="row">
+        <div *ngFor="let service of services" class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img [src]="service.image" class="card-img-top" [alt]="service.name" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title">{{ service.name }}</h5>
+              <p class="card-text">{{ service.description }}</p>
+              <p class="card-text">Precio: {{ service.price | currency }}</p>
+              <div class="item-actions">
+                <button (click)="viewDetails(service.id)" class="btn btn-info">Ver detalles</button>
+                <button (click)="editItem(service.id)" class="btn btn-warning">Editar</button>
+                <button (click)="deleteItem(service.id)" class="btn btn-danger">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Botón para crear nuevo -->
+    <div class="actions mt-4">
+      <button (click)="createNew()" class="btn btn-success">Agregar Nuevo</button>
+    </div>
+  </div>
+  

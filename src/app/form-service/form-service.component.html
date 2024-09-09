@@ -1,0 +1,34 @@
+<div class="form-container">
+    <h2>{{ isEditMode ? 'Edit Item' : 'Add New Item' }}</h2>
+    <form (ngSubmit)="onSubmit()">
+      <!-- Select de Categoría -->
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="item.category" name="category" class="form-control" required>
+          <option value="product">Product</option>
+          <option value="service">Service</option>
+        </select>
+      </div>
+      
+      <!-- Otros campos -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="item.name" name="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="item.description" name="description" class="form-control" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" [(ngModel)]="item.price" name="price" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL</label>
+        <input type="text" id="image" [(ngModel)]="item.image" name="image" class="form-control" required>
+      </div>
+  
+      <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Create' }}</button>
+    </form>
+</div>
+  
