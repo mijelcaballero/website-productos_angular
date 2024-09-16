@@ -27,8 +27,8 @@ export const routes: Routes = [
   { path: 'producto/:id', component: ProductDetailComponent},
   
   // Otras rutas
-  { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
-  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  { path: 'invoice', component: InvoiceComponent},
+  { path: 'cart', component: CartComponent},
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'contactos', component: ContactosComponent },
   { path: '**', component: NotFoundComponent },

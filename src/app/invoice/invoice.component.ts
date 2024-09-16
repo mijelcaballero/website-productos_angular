@@ -42,15 +42,13 @@ export class InvoiceComponent implements OnInit {
   }
 
   verificarStock(): void {
-    // Creamos un array de observables para verificar el stock de cada producto
     let stockChecks = this.cartItems.map(item => {
       return this.http.get<any>(`http://localhost:8080/api/v1/inventario/verificar/${item.id}/${item.quantity}`);
     });
   
-    // Usamos forkJoin para esperar que todos los observables finalicen
     forkJoin(stockChecks).subscribe(responses => {
-      // Comparamos las respuestas después de que todos los observables se hayan completado
-      const allInStock = responses.every(response => response === "Stock disponible");
+      // Ahora comparamos las respuestas en base al campo "mensaje"
+      const allInStock = responses.every(response => response.mensaje === "Stock disponible");
   
       if (allInStock) {
         this.stockSufficient = true;
@@ -66,36 +64,20 @@ export class InvoiceComponent implements OnInit {
   }
 
   procesarPago(): void {
-    const return_url = 'http://localhost:4200/success'; // URL a la que redirige PayPal después del pago
-    const cancel_url = 'http://localhost:4200/cancel'; // URL de cancelación de pago
+    const return_url = 'http://localhost:4200/success';
+    const cancel_url = 'http://localhost:4200/api/v1/productos';
 
-    // Llamamos al servicio de PayPal para procesar el pago
     this.invoiceService.pagarConPaypal(this.cartItems, return_url, cancel_url).subscribe(response => {
-      // Buscamos la URL de aprobación en la respuesta de PayPal
       const approvalUrl = response.links.find((link: { rel: string; }) => link.rel === 'approval_url').href;
       
       if (approvalUrl) {
-        window.location.href = approvalUrl; // Redirigimos a PayPal para completar el pago
+        window.location.href = approvalUrl;
       } else {
         alert('Error al procesar el pago con PayPal.');
       }
     }, error => {
       console.error('Error al procesar el pago con PayPal:', error);
       alert('Ocurrió un error al procesar el pago.');
-    });
-  }
-
-  actualizarStock(): void {
-    let stockUpdates = this.cartItems.map(item => {
-      return this.http.post<any>(`http://localhost:8080/api/v1/inventario/vender/${item.id}/${item.quantity}`, {});
-    });
-
-    Promise.all(stockUpdates).then(() => {
-      alert('Compra realizada con éxito. El stock ha sido actualizado.');
-      this.router.navigate(['/success']);
-    }).catch(error => {
-      console.error('Error al actualizar stock:', error);
-      alert('Ocurrió un error al actualizar el stock.');
     });
   }
 }

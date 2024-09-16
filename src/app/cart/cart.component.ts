@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
   total: number = 0;
@@ -43,7 +44,6 @@ export class CartComponent implements OnInit {
   }
 
   generateInvoice() {
-    // Navega al componente de la factura
     this.router.navigate(['/invoice']);
   }
 }

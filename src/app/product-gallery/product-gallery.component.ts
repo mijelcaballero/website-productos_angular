@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductoService } from '../services/producto.service'; // Servicio para cargar los productos desde el API REST Spring Boot
 
 interface Item {
-  id: number; // Cambiado a number para que coincida con los IDs de la base de datos
+  id: number; 
   name: string;
   image: string;
   price: number;
