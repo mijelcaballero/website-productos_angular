@@ -21,7 +21,7 @@ export const routes: Routes = [
   // Rutas para la galería de productos y servicios
   { path: 'productos', component: ProductGalleryComponent, data: { category: 'product' } },
   
-  { path: 'form-product', component: FormProductComponent, canActivate: [AuthGuard] },
+  { path: 'form-product', component: FormProductComponent},
   
   // Rutas para detalles de productos y servicios
   { path: 'producto/:id', component: ProductDetailComponent},

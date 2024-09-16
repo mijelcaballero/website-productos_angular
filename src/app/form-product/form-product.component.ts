@@ -11,8 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './form-product.component.html',
   styleUrls: ['./form-product.component.css']
 })
+
 export class FormProductComponent implements OnInit {
-  item: any = { name: '', description: '', price: 0, image: '', category: 'product' }; // Categoría predeterminada
+
+  item: any = { name: '', descript: '', price: 0, image: '', category: 'product' }; // Categoría predeterminada
   isEditMode = false;
   itemId: number | null = null;
 
@@ -41,7 +43,7 @@ export class FormProductComponent implements OnInit {
         });
       } else if (action === 'create') {
         this.isEditMode = false;
-        this.item = { name: '', description: '', price: 0, image: '', category: 'product' }; // Valores por defecto
+        this.item = { name: '', descript: '', price: 0, image: '', category: 'product' }; // Valores por defecto
       }
     });
   }
@@ -51,7 +53,7 @@ export class FormProductComponent implements OnInit {
       this.productoService.updateProducto(this.itemId, this.item).subscribe({
         next: () => {
           this.snackBar.open('Producto actualizado exitosamente!', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/galeria']);
+          this.router.navigate(['/productos']);
         },
         error: (error) => {
           console.error('Error al actualizar el producto:', error);
@@ -62,7 +64,7 @@ export class FormProductComponent implements OnInit {
       this.productoService.createProducto(this.item).subscribe({
         next: () => {
           this.snackBar.open('Producto creado exitosamente!', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/galeria']);
+          this.router.navigate(['/productos']);
         },
         error: (error) => {
           console.error('Error al crear el producto:', error);

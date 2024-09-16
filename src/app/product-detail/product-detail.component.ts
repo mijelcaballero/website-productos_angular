@@ -10,7 +10,7 @@ interface Producto {
   id: number;
   name: string;
   image: string;
-  description: string;
+  descript: string;
   price: number;
   category: string; // "product" o "service"
 }

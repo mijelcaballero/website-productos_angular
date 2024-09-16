@@ -14,7 +14,7 @@
             <img [src]="item.image" class="card-img-top" [alt]="item.name" style="height: 200px; object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.description }}</p>
+              <p class="card-text">{{ item.descript }}</p>
               <p class="card-text">Precio: {{ item.price | currency }}</p>
               <div class="item-actions">
                 <button (click)="viewDetails(item.id, 'product')" class="btn btn-info">Ver detalles</button>
@@ -42,7 +42,7 @@
             <img [src]="item.image" class="card-img-top" [alt]="item.name" style="height: 200px; object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.description }}</p>
+              <p class="card-text">{{ item.descript }}</p>
               <p class="card-text">Precio: {{ item.price | currency }}</p>
               <div class="item-actions">
                 <button (click)="viewDetails(item.id, 'service')" class="btn btn-info">Ver detalles</button>

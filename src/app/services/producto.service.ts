@@ -7,7 +7,7 @@ interface Producto {
   name: string;
   image: string;
   price: number;
-  description: string;
+  descript: string;
   category: string; // "product" o "service"
 }
 
