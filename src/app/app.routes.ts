@@ -20,14 +20,12 @@ export const routes: Routes = [
 
   // Rutas para la galería de productos y servicios
   { path: 'productos', component: ProductGalleryComponent, data: { category: 'product' } },
-  { path: 'servicios', component: ServiceGalleryComponent, data: { category: 'service' } },
+  
   { path: 'form-product', component: FormProductComponent, canActivate: [AuthGuard] },
-  { path: 'form-service', component: FormServiceComponent, canActivate: [AuthGuard] },
-
+  
   // Rutas para detalles de productos y servicios
-  { path: 'producto/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
-  { path: 'servicio/:id', component: ServiceDetailComponent, canActivate: [AuthGuard] },
-
+  { path: 'producto/:id', component: ProductDetailComponent},
+  
   // Otras rutas
   { path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },

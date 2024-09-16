@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { FirestoreService } from '../services/firestore.service'; // Importar el servicio
 import { Observable } from 'rxjs';
+import { ProductoService } from '../services/producto.service'; // Servicio para cargar los productos desde el API REST Spring Boot
 
 interface Item {
-  id: string; // Cambiado a string para que coincida con los IDs de Firestore
+  id: number; // Cambiado a number para que coincida con los IDs de la base de datos
   name: string;
   image: string;
   price: number;
@@ -20,15 +20,13 @@ interface Item {
   templateUrl: './product-gallery.component.html',
   styleUrls: ['./product-gallery.component.css']
 })
-
 export class ProductGalleryComponent implements OnInit {
-  products$: Observable<Item[]> = new Observable<Item[]>();
-  services$: Observable<Item[]> = new Observable<Item[]>();
+  productos$: Observable<Item[]> = new Observable<Item[]>();
   loading = true;
   category: 'product' | 'service' = 'product'; // Default to product
 
   constructor(
-    private firestoreService: FirestoreService,
+    private productoService: ProductoService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -37,25 +35,24 @@ export class ProductGalleryComponent implements OnInit {
     // Obtener el parámetro de categoría de la ruta
     this.category = this.route.snapshot.paramMap.get('category') as 'product' | 'service' || 'product';
 
-    // Obtener los productos y servicios desde Firebase
-    this.products$ = this.firestoreService.getItems('productos');
-    this.services$ = this.firestoreService.getItems('servicios');
+    // Obtener los productos desde la API
+    this.productos$ = this.productoService.getProductos();
     
     // Manejar el estado de carga
     this.loading = false; // Asume que la carga se completa cuando se obtienen los datos
   }
 
   get items$(): Observable<Item[]> {
-    return this.category === 'product' ? this.products$ : this.services$;
+    // Filtrar los productos por categoría
+    return this.productos$; // Aquí filtra por categoría si es necesario
   }
 
-  editItem(id: string): void {
+  editItem(id: number): void {
     this.router.navigate(['/form-product'], { queryParams: { action: 'edit', type: this.category, id } });
   }
 
-  deleteItem(id: string): void {
-    const collectionName = this.category === 'product' ? 'productos' : 'servicios';
-    this.firestoreService.deleteItem(collectionName, id).then(() => {
+  deleteItem(id: number): void {
+    this.productoService.deleteProducto(id).subscribe(() => {
       console.log('Item eliminado');
       // Actualizar la vista después de eliminar el item
       this.ngOnInit();
@@ -66,7 +63,7 @@ export class ProductGalleryComponent implements OnInit {
     this.router.navigate(['/form-product'], { queryParams: { action: 'create', type: this.category } });
   }
 
-  viewDetails(id: string, category: 'product' | 'service'): void {
+  viewDetails(id: number, category: 'product' | 'service'): void {
     const routePath = category === 'product' ? `/producto/${id}` : `/servicio/${id}`;
     this.router.navigate([routePath]);
   }

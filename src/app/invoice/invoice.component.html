@@ -1,12 +1,25 @@
-<div class="invoice-container">
-    <h2>Invoice Preview</h2>
-    <div *ngFor="let item of cartItems" class="invoice-item">
-      <p>{{item.name}} - {{item.price | currency}}</p>
-    </div>
-    <div class="invoice-summary">
-      <p>Total: {{total | currency}}</p>
-      <p>IVA (15%): {{iva | currency}}</p>
-      <p>Final Amount: {{finalAmount | currency}}</p>
-    </div>
-</div>
+<div *ngIf="cartItems.length > 0">
+  <h2>Factura</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
   
+  <p>Total: {{ total | currency }}</p>
+  <p>IVA: {{ iva | currency }}</p>
+  <p>Total a Pagar: {{ finalAmount | currency }}</p>
+
+  <button (click)="verificarStock()">Pagar</button>
+</div>

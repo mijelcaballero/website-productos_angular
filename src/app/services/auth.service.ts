@@ -7,17 +7,17 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'assets/products.json'; // Ruta al archivo JSON
+  
+  private apiUrl = 'http://localhost:8080/api/v1/clientes/login'; // Cambia esto a la URL de tu API REST
   private authenticated = new BehaviorSubject<boolean>(false); // Estado de autenticación
 
   constructor(private http: HttpClient) {}
 
   // Método para autenticar al usuario
   authenticate(username: string, password: string): Observable<boolean> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map(data => {
-        const user = data.users.find((u: { username: string; password: string; }) => u.username === username && u.password === password);
-        const isAuthenticated = !!user; // Devuelve true si el usuario existe
+    return this.http.post<any>(this.apiUrl, { email: username, passw: password }).pipe(
+      map(response => {
+        const isAuthenticated = response.success; // Ajusta esto según cómo tu API responda
         this.authenticated.next(isAuthenticated); // Actualiza el estado de autenticación
         return isAuthenticated;
       }),

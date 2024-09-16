@@ -1,4 +1,3 @@
-<!-- product-gallery.component.html -->
 <div class="container">
   <!-- Condiciones basadas en la categoría -->
   <div *ngIf="category === 'product'">
@@ -7,20 +6,20 @@
 
     <div *ngIf="loading">Cargando productos...</div>
 
-    <div *ngIf="!loading && (products$ | async) as products">
-      <div *ngIf="products.length === 0">No hay productos disponibles</div>
-      <div *ngIf="products.length > 0" class="row">
-        <div *ngFor="let product of products" class="col-md-4 mb-4">
+    <div *ngIf="!loading && (items$ | async) as items">
+      <div *ngIf="items.length === 0">No hay productos disponibles</div>
+      <div *ngIf="items.length > 0" class="row">
+        <div *ngFor="let item of items" class="col-md-4 mb-4">
           <div class="card h-100">
-            <img [src]="product.image" class="card-img-top" [alt]="product.name" style="height: 200px; object-fit: cover;">
+            <img [src]="item.image" class="card-img-top" [alt]="item.name" style="height: 200px; object-fit: cover;">
             <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">{{ product.description }}</p>
-              <p class="card-text">Precio: {{ product.price | currency }}</p>
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.description }}</p>
+              <p class="card-text">Precio: {{ item.price | currency }}</p>
               <div class="item-actions">
-                <button (click)="viewDetails(product.id, 'product')" class="btn btn-info">Ver detalles</button>
-                <button (click)="editItem(product.id)" class="btn btn-warning">Editar</button>
-                <button (click)="deleteItem(product.id)" class="btn btn-danger">Eliminar</button>
+                <button (click)="viewDetails(item.id, 'product')" class="btn btn-info">Ver detalles</button>
+                <button (click)="editItem(item.id)" class="btn btn-warning">Editar</button>
+                <button (click)="deleteItem(item.id)" class="btn btn-danger">Eliminar</button>
               </div>
             </div>
           </div>
@@ -35,20 +34,20 @@
 
     <div *ngIf="loading">Cargando servicios...</div>
 
-    <div *ngIf="!loading && (services$ | async) as services">
-      <div *ngIf="services.length === 0">No hay servicios disponibles</div>
-      <div *ngIf="services.length > 0" class="row">
-        <div *ngFor="let service of services" class="col-md-4 mb-4">
+    <div *ngIf="!loading && (items$ | async) as items">
+      <div *ngIf="items.length === 0">No hay servicios disponibles</div>
+      <div *ngIf="items.length > 0" class="row">
+        <div *ngFor="let item of items" class="col-md-4 mb-4">
           <div class="card h-100">
-            <img [src]="service.image" class="card-img-top" [alt]="service.name" style="height: 200px; object-fit: cover;">
+            <img [src]="item.image" class="card-img-top" [alt]="item.name" style="height: 200px; object-fit: cover;">
             <div class="card-body">
-              <h5 class="card-title">{{ service.name }}</h5>
-              <p class="card-text">{{ service.description }}</p>
-              <p class="card-text">Precio: {{ service.price | currency }}</p>
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.description }}</p>
+              <p class="card-text">Precio: {{ item.price | currency }}</p>
               <div class="item-actions">
-                <button (click)="viewDetails(service.id, 'service')" class="btn btn-info">Ver detalles</button>
-                <button (click)="editItem(service.id)" class="btn btn-warning">Editar</button>
-                <button (click)="deleteItem(service.id)" class="btn btn-danger">Eliminar</button>
+                <button (click)="viewDetails(item.id, 'service')" class="btn btn-info">Ver detalles</button>
+                <button (click)="editItem(item.id)" class="btn btn-warning">Editar</button>
+                <button (click)="deleteItem(item.id)" class="btn btn-danger">Eliminar</button>
               </div>
             </div>
           </div>
