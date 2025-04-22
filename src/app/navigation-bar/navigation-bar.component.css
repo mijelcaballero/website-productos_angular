@@ -1,25 +1,43 @@
 .custom-navbar {
-  background-color: #1f2833;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Reducido el sombreado para menos impacto visual */
-  padding: 0.25rem 0.75rem; /* Reducido el padding para disminuir aún más la altura */
-  margin-bottom: 0.5rem; /* Reducido el margen inferior */
+  background-color: rgba(11, 12, 16, 0.85); /* semi-transparente */
+  backdrop-filter: blur(8px); /* efecto desenfoque */
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: 0.7rem 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
 }
 
+
 .custom-navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: bold;
-  color: #66fcf1; /* Color destacado para el logo */
-  font-size: 1.125rem; /* Reducido el tamaño del texto del logo */
+  color: #66fcf1;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.custom-navbar .navbar-brand img {
+  height: 40px;
+  border-radius: 6px;
 }
 
 .custom-navbar .nav-link {
-  color: #c5c6c7; /* Color más suave */
-  margin-right: 10px; /* Reducido el margen a la derecha */
-  font-size: 0.875rem; /* Tamaño del texto de los enlaces ajustado */
-  padding: 4px 8px; /* Reducido el padding para una apariencia más compacta */
+  color: #c5c6c7;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
 }
 
 .custom-navbar .nav-link:hover {
-  color: #45a29e; /* Cambio de color sutil al pasar el ratón */
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo ligero al hacer hover */
-  border-radius: 3px; /* Bordes redondeados más pequeños */
+  color: #66fcf1;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  text-shadow: 0 0 6px #66fcf199;
 }

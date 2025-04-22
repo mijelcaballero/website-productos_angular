@@ -1,0 +1,30 @@
+<div class="reserva-container">
+  <h2>🎟️ Reserva para: <span class="titulo">{{ tituloPelicula }}</span></h2>
+
+  <div class="pantalla">Pantalla</div>
+
+  <div class="butacas-grid">
+    <button *ngFor="let butaca of generarMapaButacas()"
+            [disabled]="!butacasDisponibles.includes(butaca)"
+            [class.seleccionada]="butacasSeleccionadas.includes(butaca)"
+            [class.reservada]="!butacasDisponibles.includes(butaca)"
+            class="butaca"
+            (click)="toggleButaca(butaca)">
+      {{ butaca }}
+    </button>
+  </div>
+
+  <div class="resumen">
+    <p *ngIf="errorMsg" class="error">{{ errorMsg }}</p>
+    <p *ngIf="successMsg" class="success">{{ successMsg }}</p>
+
+    <p><strong>Butacas seleccionadas:</strong> {{ butacasSeleccionadas.join(', ') }}</p>
+    <p><strong>Total de tickets:</strong> {{ ticketCount }}</p>
+
+    <button class="btn-reservar"
+            (click)="reservar()"
+            [disabled]="isSubmitting || butacasSeleccionadas.length === 0">
+      ✅ Confirmar Reserva ({{ butacasSeleccionadas.length }})
+    </button>
+  </div>
+</div>

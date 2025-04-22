@@ -13,13 +13,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBmtC8ELgt6wipdYryywJbMuLanteu4hD4",
-  authDomain: "productos-web-68375.firebaseapp.com",
-  projectId: "productos-web-68375",
-  storageBucket: "productos-web-68375.appspot.com",
-  messagingSenderId: "678355689440",
-  appId: "1:678355689440:web:2515c257d76d8725ba9585",
-  measurementId: "G-7LQ61G9ZL7"
+  apiKey: "AIzaSyBG4s2ZdgKjpZrZ1-2ZU12J7t7yaLAWOlA",
+  authDomain: "website-cine-angular.firebaseapp.com",
+  projectId: "website-cine-angular",
+  storageBucket: "website-cine-angular.firebasestorage.app",
+  messagingSenderId: "136000042635",
+  appId: "1:136000042635:web:570497eb30bdcda0bf068e",
+  measurementId: "G-FG6JZC993W"
 };
 
 export const appConfig: ApplicationConfig = {
@@ -29,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     RouterModule,
     // Inicialización de Firebase y servicios
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     NavigationBarComponent, provideAnimationsAsync()
   ],

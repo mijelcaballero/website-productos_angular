@@ -1,4 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+/* Altura base de la navbar, usada como variable */
+:root {
+    --navbar-height: 70px;
+  }
+  
+  /* Mantener altura completa del documento */
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  /* Aseguramos que el contenido principal no quede oculto detrás de la navbar */
+  body {
+    padding-top: var(--navbar-height);
+    background-color: #f9f9f9;
+  }
+  
+  /* También puedes usar esta clase si prefieres envolver el contenido */
+  .main-content {
+    padding-top: var(--navbar-height);
+  }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  /* Animación de entrada */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  /* Keyframes de la animación */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

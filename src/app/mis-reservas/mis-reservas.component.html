@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <h2 class="mb-3">Mis Reservas</h2>
+    <div class="row g-4">
+      <div class="col-md-6" *ngFor="let reserva of reservas">
+        <div class="card shadow-sm">
+          <img 
+            *ngIf="obtenerImagenPelicula(reserva.peliculaId)" 
+            [src]="obtenerImagenPelicula(reserva.peliculaId)"
+            class="card-img-top" 
+            alt="{{ reserva.tituloPelicula }}"
+          />
+          <div class="card-body">
+  
+            <!-- Si NO está en modo edición -->
+            <div *ngIf="reservaEditandoId !== reserva.id">
+              <h5 class="card-title">{{ reserva.tituloPelicula }}</h5>
+              <p class="card-text mb-1"><strong>Butacas:</strong> {{ reserva.butacas.join(', ') }}</p>
+              <p class="card-text mb-1"><strong>Fecha:</strong> {{ reserva.fechaReserva.toDate() | date:'medium' }}</p>
+              <p class="card-text mb-1"><strong>Tickets:</strong> {{ reserva.ticketCount }}</p>
+              <p class="card-text"><strong>Precio:</strong> ${{ reserva.precio?.toFixed(2) }}</p>
+  
+              <button class="btn btn-sm btn-primary me-2" (click)="seleccionarParaEditar(reserva)">Editar</button>
+              <button class="btn btn-sm btn-danger" (click)="eliminarReserva(reserva.id!)">Eliminar</button>
+            </div>
+  
+            <!-- Si ESTÁ en modo edición para ESTA reserva -->
+            <div *ngIf="reservaEditandoId === reserva.id">
+              <h5 class="card-title">{{ reserva.tituloPelicula }}</h5>
+              <p><strong>Selecciona nuevas butacas:</strong></p>
+  
+              <div class="matriz-butacas">
+                <div class="fila" *ngFor="let fila of ['A', 'B', 'C', 'D']">
+                  <button 
+                    *ngFor="let col of [1, 2, 3, 4, 5]"
+                    (click)="toggleButaca(fila + col)"
+                    [disabled]="butacasOcupadas.includes(fila + col) && !edicionReserva.butacas?.includes(fila + col)"
+                    [ngClass]="{
+                      'butaca': true,
+                      'seleccionada': edicionReserva.butacas?.includes(fila + col),
+                      'ocupada': butacasOcupadas.includes(fila + col)
+                    }"
+                  >
+                    {{ fila + col }}
+                  </button>
+                </div>
+              </div>
+  
+              <p class="mt-2"><strong>Total de boletos:</strong> {{ edicionReserva.ticketCount }}</p>
+              <p><strong>Nuevo precio:</strong> ${{ edicionReserva.precio?.toFixed(2) }}</p>
+  
+              <button class="btn btn-success me-2" (click)="guardarCambios()">Guardar</button>
+              <button class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

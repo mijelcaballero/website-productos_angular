@@ -1,0 +1,17 @@
+<h2>Registro</h2>
+
+<form (ngSubmit)="register()">
+  <div>
+    <label>Email:</label>
+    <input [(ngModel)]="email" name="email" type="email" required />
+  </div>
+  <div>
+    <label>Contraseña:</label>
+    <input [(ngModel)]="password" name="password" type="password" required />
+  </div>
+  <button type="submit">Registrarse</button>
+</form>
+
+<div *ngIf="error" style="color: red;">{{ error }}</div>
+
+<p>¿Ya tienes cuenta? <a (click)="goToLogin()" style="cursor:pointer;">Inicia sesión aquí</a></p>

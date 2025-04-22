@@ -1,26 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-// Definimos las interfaces para productos y servicios
-interface Product {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  category: string;
-  price: number;
-}
-
-interface Service {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  category: string;
-  price: number;
-}
+import { PeliculasService } from '../services/pelicula.service';
+import { Pelicula } from '../models/pelicula.model';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-home',
@@ -31,25 +17,45 @@ interface Service {
 })
 
 export class HomeComponent implements OnInit {
-  products: Product[] = [];
-  services: Service[] = [];
+  peliculasEnCartelera: Pelicula[] = [];
+  proximosEstrenos: Pelicula[] = [];
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private peliculasService: PeliculasService,
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-    this.http.get<any>('/assets/products.json')
-      .subscribe(
-        data => {
-          // Filtrar productos y servicios
-          this.products = data.products;
-          this.services = data.services;
-          this.loading = false;
-        },
-        error => {
-          console.error('Error al cargar los datos:', error);
-          this.loading = false;
-        }
-      );
+    this.peliculasService.getPeliculas().subscribe(
+      peliculas => {
+        const hoy = new Date();
+        this.peliculasEnCartelera = peliculas.filter(p => p.enCartelera);
+        this.proximosEstrenos = peliculas.filter(p => new Date(p.fechaEstreno) > hoy)
+        .sort((a, b) => a.fechaEstreno.getTime() - b.fechaEstreno.getTime());
+        this.loading = false;
+      },
+      error => {
+        console.error('Error cargando películas:', error);
+        this.loading = false;
+      }
+    );
+  }
+
+  verDetalles(id: string) {
+    this.router.navigate(['/pelicula', id]);
+  }
+
+  sanitizarUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.convertirUrlYoutube(url));
+  }
+
+  convertirUrlYoutube(url: string): string {
+    const videoId = url.split("v=")[1]?.split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  formatFechaEstreno(fecha: Date | undefined): string {
+    return fecha ? fecha.toLocaleDateString() : 'Fecha no disponible';
   }
 }

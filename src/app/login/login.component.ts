@@ -12,22 +12,36 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 
-
 export class LoginComponent {
-  username: string = '';
+  email: string = '';  // 
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    this.authService.authenticate(this.username, this.password).subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        // Redirige al usuario a la página principal
-        this.router.navigate(['/']);
-      } else {
-        this.errorMessage = 'Nombre de usuario o contraseña incorrectos';
+  login() {
+    this.authService.login(this.email, this.password).subscribe({
+      next: () => {
+        const reservaPendiente = localStorage.getItem('reservaPendiente');
+  
+        if (reservaPendiente) {
+          const { peliculaId, titulo } = JSON.parse(reservaPendiente);
+          localStorage.removeItem('reservaPendiente'); // Limpia el storage
+  
+          this.router.navigate(['/reserva', peliculaId], {
+            state: { titulo }
+          });
+        } else {
+          this.router.navigate(['/home']); // o la ruta por defecto
+        }
+      },
+      error: (err) => {
+        this.errorMessage = err.message;
       }
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }

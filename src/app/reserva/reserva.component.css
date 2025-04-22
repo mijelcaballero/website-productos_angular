@@ -1,0 +1,94 @@
+.reserva-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #121212;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.titulo {
+  color: #ffc107;
+}
+
+.pantalla {
+  background-color: #eee;
+  color: #333;
+  text-align: center;
+  padding: 8px;
+  margin: 10px 0 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.butacas-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  justify-items: center;
+}
+
+.butaca {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #444;
+  border: 2px solid #888;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.butaca:hover {
+  background-color: #666;
+  transform: scale(1.1);
+}
+
+.seleccionada {
+  background-color: #4caf50;
+  border-color: #388e3c;
+}
+
+.reservada {
+  background-color: #999;
+  color: #444;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: #777;
+}
+
+.resumen {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-reservar {
+  margin-top: 15px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reservar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-reservar:hover:not(:disabled) {
+  background-color: #e64a19;
+}
+
+.error {
+  color: #f44336;
+}
+
+.success {
+  color: #8bc34a;
+}
